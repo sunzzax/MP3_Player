@@ -39,6 +39,7 @@ public class Controlador_IniciarSesion implements Initializable {
     private PasswordField pwfContraseña;
 
     private Modelo_Usuario modeloUsuario;
+
     private UsuarioDAO usuarioDAO;
 
     @FXML
@@ -70,25 +71,68 @@ public class Controlador_IniciarSesion implements Initializable {
     private void pulsarBtnEntrar(ActionEvent event) {
 
         try {
+
             String usuario = txfUsuario.getText();
             String contraseña = pwfContraseña.getText();
 
             if (usuario.isEmpty() || contraseña.isEmpty()) {
                 System.out.println("Los campos no pueden estar vacios.");
             } else {
+
                 modeloUsuario.setUsuario(usuario);
                 modeloUsuario.setContraseña(contraseña);
 
-                // Compruebo si se encuentra en la base de datos
-                if (usuarioDAO.validarCredenciales(usuario, contraseña)) {
-                    //Aqui debo mostrarla ventana usuario (comprobar por tipo)
-                    // si es usuario a la ventana de usuario si es administrador
-                    // a la ventana de administrador
-                    System.out.println("Bienvenido. Acceso concedido.");
-                } else {
-                    System.out.println("Usuario o contraseña incorrectos.");
-                }
+                String tipoUsuario = usuarioDAO.validarCredenciales(modeloUsuario);
 
+                // Compruebo si se encuentra en la base de datos
+                if (tipoUsuario != null) {
+                    System.out.println("Bienvenido. Acceso concedido como " + tipoUsuario);
+                    if (tipoUsuario.equals("usuario")) {
+                        try {
+                            // Obtengo el stage actual para cerrar la ventana en la cual se encuentra el botón
+                            Stage stageActual = (Stage) btnEntrar.getScene().getWindow();
+                            stageActual.close(); // Cierro la ventana de iniciar sesion
+
+                            Parent root = FXMLLoader.load(getClass().getResource("/vistas/FXML_VentanaUsuario.fxml")); // Cargo el FXML
+
+                            Scene sceneAyuda = new Scene(root); // Creo la nueva escenea con la vista del FXML
+
+                            Stage stageNueva = new Stage(); // creo un nuevo stage y lo configuro
+                            stageNueva.setTitle("MP3_Player"); // le doy un titulo a la ventana
+                            stageNueva.setScene(sceneAyuda); // le paso la scene a cargar
+                            stageNueva.centerOnScreen(); // Centro la ventana en la ventana
+
+                            stageNueva.show(); // Muestro la ventana de usuario
+
+                        } catch (IOException ex) {
+                            System.err.println("Error al intentar cargar la ventana de ayuda: "
+                                    + ex.getMessage());
+                        }
+                    } else if (tipoUsuario.equals("administrador")) {
+                        try {
+                            // Obtengo el stage actual para cerrar la ventana en la cual se encuentra el botón
+                            Stage stageActual = (Stage) btnEntrar.getScene().getWindow();
+                            stageActual.close(); // Cierro la ventana de iniciar sesion
+
+                            Parent root = FXMLLoader.load(getClass().getResource("/vistas/FXML_VentanaAdministrador.fxml")); // Cargo el FXML
+
+                            Scene sceneAyuda = new Scene(root); // Creo la nueva escenea con la vista del FXML
+
+                            Stage stageNueva = new Stage(); // creo un nuevo stage y lo configuro
+                            stageNueva.setTitle("MP3_Player"); // le doy un titulo a la ventana
+                            stageNueva.setScene(sceneAyuda); // le paso la scene a cargar
+                            stageNueva.centerOnScreen(); // Centro la ventana en la ventana
+
+                            stageNueva.show(); // Muestro la ventana de administrador
+
+                        } catch (IOException ex) {
+                            System.err.println("Error al intentar cargar la ventana de ayuda: "
+                                    + ex.getMessage());
+                        }
+                    } else {
+                        System.out.println("Usuario o contraseña incorrectos.");
+                    }
+                }
             }
 
         } catch (Exception ex) {
@@ -102,7 +146,15 @@ public class Controlador_IniciarSesion implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // Este método se llama automáticamente cuando se carga el FXML.
+        // En este punto, todos los elementos marcados con @FXML (como botones, labels, textfields...) ya están conectados.
+
+        // Aquí es el lugar correcto para crear objetos que vas a usar en tu controlador.
+        // Por ejemplo, inicializar el modelo, DAO, listeners, cargar datos, etc.
+        modeloUsuario = new Modelo_Usuario(); // Creamos el modelo para poder usar sus getters/setters
+        usuarioDAO = new UsuarioDAO();        // Creamos el DAO para acceder a la base de datos si es necesario
+
+        // También podrías inicializar listas, cargar datos desde BD, o añadir validaciones a campos aquí
     }
 
 }

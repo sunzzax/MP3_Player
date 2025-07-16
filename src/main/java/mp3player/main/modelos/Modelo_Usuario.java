@@ -13,7 +13,9 @@ public class Modelo_Usuario {
     private int ID;
     private String usuario, contraseña, tipo;
 
-    // Constructor sin parámetros
+    // Constructor sin parámetros OBLIGATORIO
+    /*JavaFX lo necesita para crear el controlador 
+    automáticamente al cargar el FXML*/
     public Modelo_Usuario() {
     }
 
