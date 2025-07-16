@@ -149,12 +149,12 @@ public class Controlador_IniciarSesion implements Initializable {
         // Este método se llama automáticamente cuando se carga el FXML.
         // En este punto, todos los elementos marcados con @FXML (como botones, labels, textfields...) ya están conectados.
 
-        // Aquí es el lugar correcto para crear objetos que vas a usar en tu controlador.
+        // Aquí es el lugar correcto para crear objetos que usare en el controlador.
         // Por ejemplo, inicializar el modelo, DAO, listeners, cargar datos, etc.
         modeloUsuario = new Modelo_Usuario(); // Creamos el modelo para poder usar sus getters/setters
         usuarioDAO = new UsuarioDAO();        // Creamos el DAO para acceder a la base de datos si es necesario
 
-        // También podrías inicializar listas, cargar datos desde BD, o añadir validaciones a campos aquí
+        // También puedo inicializar listas, cargar datos desde BD, o añadir validaciones a campos aquí
     }
 
 }

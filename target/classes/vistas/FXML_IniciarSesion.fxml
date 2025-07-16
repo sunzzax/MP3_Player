@@ -14,7 +14,7 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <TextField fx:id="txfUsuario" focusTraversable="false" layoutX="201.0" layoutY="150.0" promptText="Usuario">
+      <TextField fx:id="txfUsuario" focusTraversable="false" layoutX="201.0" layoutY="165.0" promptText="Usuario">
          <font>
             <Font size="16.0" />
          </font>
@@ -34,6 +34,6 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="407.0" layoutY="209.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="58.0" text="mostrar" />
+      <Button focusTraversable="false" layoutX="407.0" layoutY="209.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="58.0" text="mostrar" />
    </children>
 </AnchorPane>
