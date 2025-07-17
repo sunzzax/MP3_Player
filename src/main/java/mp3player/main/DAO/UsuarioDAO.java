@@ -8,9 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import mp3player.main.modelos.Modelo_Usuario;
 import mp3player.main.utilidades.ConexionBD;
 
 /**
@@ -21,16 +18,16 @@ public class UsuarioDAO {
 
     public UsuarioDAO() {
     }
-
-    public String validarCredenciales(Modelo_Usuario usuario) {
+                                                        // por ahora dejarlo asi
+    public String validarCredenciales(String usuario, String contraseña) {
 
         String tipo = null;
         String sql = "SELECT * FROM usuario WHERE usuario = ? AND contraseña = ?";
 
         try (Connection con = ConexionBD.conectarBD(); PreparedStatement pstm = con.prepareStatement(sql)) {
 
-            pstm.setString(1, usuario.getUsuario()); // añade a sql en la posicion 1 a usuario
-            pstm.setString(2, usuario.getContraseña()); // añade en la posicion2 a contraseña
+            pstm.setString(1, usuario); // añade a sql en la posicion 1 a usuario
+            pstm.setString(2, contraseña); // añade en la posicion2 a contraseña
 
             ResultSet resultado = pstm.executeQuery(); // ejecuta la consulta
 

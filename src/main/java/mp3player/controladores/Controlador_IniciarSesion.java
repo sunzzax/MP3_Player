@@ -20,7 +20,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mp3player.main.DAO.UsuarioDAO;
-import mp3player.main.modelos.Modelo_Usuario;
 
 /**
  * FXML Controller class
@@ -37,8 +36,6 @@ public class Controlador_IniciarSesion implements Initializable {
 
     @FXML
     private PasswordField pwfContraseña;
-
-    private Modelo_Usuario modeloUsuario;
 
     private UsuarioDAO usuarioDAO;
 
@@ -78,11 +75,8 @@ public class Controlador_IniciarSesion implements Initializable {
             if (usuario.isEmpty() || contraseña.isEmpty()) {
                 System.out.println("Los campos no pueden estar vacios.");
             } else {
-
-                modeloUsuario.setUsuario(usuario);
-                modeloUsuario.setContraseña(contraseña);
-
-                String tipoUsuario = usuarioDAO.validarCredenciales(modeloUsuario);
+                                                                                                // por ahora dejarlo asi
+                String tipoUsuario = usuarioDAO.validarCredenciales(usuario, contraseña);
 
                 // Compruebo si se encuentra en la base de datos
                 if (tipoUsuario != null) {
@@ -146,15 +140,7 @@ public class Controlador_IniciarSesion implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Este método se llama automáticamente cuando se carga el FXML.
-        // En este punto, todos los elementos marcados con @FXML (como botones, labels, textfields...) ya están conectados.
-
-        // Aquí es el lugar correcto para crear objetos que usare en el controlador.
-        // Por ejemplo, inicializar el modelo, DAO, listeners, cargar datos, etc.
-        modeloUsuario = new Modelo_Usuario(); // Creamos el modelo para poder usar sus getters/setters
         usuarioDAO = new UsuarioDAO();        // Creamos el DAO para acceder a la base de datos si es necesario
-
-        // También puedo inicializar listas, cargar datos desde BD, o añadir validaciones a campos aquí
     }
 
 }
