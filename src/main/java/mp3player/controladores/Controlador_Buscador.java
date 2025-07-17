@@ -29,7 +29,7 @@ public class Controlador_Buscador implements Initializable {
     // habiamos recibido en setComboBox
     public void añadirElementos() {
         if(comboBoxFiltrar != null) {
-            comboBoxFiltrar.getItems().addAll("Cualquiera, Phonk", "Clasica", "Electronica", "Pop");
+            comboBoxFiltrar.getItems().addAll("Todos, Phonk", "Clasica", "Electronica", "Pop");
         }
     }
     /**
