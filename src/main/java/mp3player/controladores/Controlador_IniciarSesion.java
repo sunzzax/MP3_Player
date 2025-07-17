@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package mp3player.controladores;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import mp3player.main.DAO.UsuarioDAO;
 import mp3player.main.utilidades.AbrirVentanasFXML;
 
@@ -21,6 +24,9 @@ import mp3player.main.utilidades.AbrirVentanasFXML;
  * @author kira
  */
 public class Controlador_IniciarSesion implements Initializable {
+
+    @FXML
+    AnchorPane anchorPane;
 
     @FXML
     private Button btnAyuda, btnEntrar, btnMostrar;
@@ -103,8 +109,11 @@ public class Controlador_IniciarSesion implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        labelContraseña.setVisible(false);
+        labelContraseña.setVisible(false); // declaramos a falso el label de mostrar la contraseña
         usuarioDAO = new UsuarioDAO();        // Creamos el DAO para acceder a la base de datos si es necesario
+        Platform.runLater(() -> {
+            anchorPane.requestFocus(); // Esto evita que el TextField esté marcado
+        });
     }
 
 }
