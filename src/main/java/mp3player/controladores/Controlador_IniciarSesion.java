@@ -16,10 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mp3player.main.DAO.UsuarioDAO;
+import mp3player.main.utilidades.AbrirVentanasFXML;
 
 /**
  * FXML Controller class
@@ -29,7 +31,7 @@ import mp3player.main.DAO.UsuarioDAO;
 public class Controlador_IniciarSesion implements Initializable {
 
     @FXML
-    private Button btnAyuda, btnEntrar;
+    private Button btnAyuda, btnEntrar, btnMostrar;
 
     @FXML
     private TextField txfUsuario;
@@ -37,31 +39,15 @@ public class Controlador_IniciarSesion implements Initializable {
     @FXML
     private PasswordField pwfContraseña;
 
+    @FXML
+    private Label labelContraseña;
+
     private UsuarioDAO usuarioDAO;
 
     @FXML
     private void pulsarBtnAyuda(ActionEvent event) {
-        try {
-            // Obtengo el stage actual para cerrar la ventana en la cual se encuentra el botón
-            Stage stageActual = (Stage) btnAyuda.getScene().getWindow();
-            stageActual.close(); // Cierro la ventana de iniciar sesion
-
-            Parent root = FXMLLoader.load(getClass().getResource("/vistas/FXML_Ayuda.fxml")); // Cargo el FXML
-
-            Scene sceneAyuda = new Scene(root); // Creo la nueva escenea con la vista del FXML
-
-            Stage stageNueva = new Stage(); // creo un nuevo stage y lo configuro
-            stageNueva.setTitle("MP3_Player"); // le doy un titulo a la ventana
-            stageNueva.setScene(sceneAyuda); // le paso la scene a cargar
-            stageNueva.centerOnScreen(); // Centro la ventana en la ventana
-
-            stageNueva.show(); // Muestro la ventana de ayuda
-
-        } catch (IOException ex) {
-            System.err.println("Error al intentar cargar la ventana de ayuda: "
-                    + ex.getMessage());
-        }
-
+        AbrirVentanasFXML.cerrarVentanaActual(btnAyuda);
+        AbrirVentanasFXML.abrirVentana("/vistas/FXML_Ayuda.fxml", "MP3_Player");
     }
 
     @FXML
@@ -75,64 +61,49 @@ public class Controlador_IniciarSesion implements Initializable {
             if (usuario.isEmpty() || contraseña.isEmpty()) {
                 System.out.println("Los campos no pueden estar vacios.");
             } else {
-                                                                                                // por ahora dejarlo asi
+                // por ahora dejarlo asi
                 String tipoUsuario = usuarioDAO.validarCredenciales(usuario, contraseña);
 
                 // Compruebo si se encuentra en la base de datos
                 if (tipoUsuario != null) {
                     System.out.println("Bienvenido. Acceso concedido como " + tipoUsuario);
+
                     if (tipoUsuario.equals("usuario")) {
-                        try {
-                            // Obtengo el stage actual para cerrar la ventana en la cual se encuentra el botón
-                            Stage stageActual = (Stage) btnEntrar.getScene().getWindow();
-                            stageActual.close(); // Cierro la ventana de iniciar sesion
-
-                            Parent root = FXMLLoader.load(getClass().getResource("/vistas/FXML_VentanaUsuario.fxml")); // Cargo el FXML
-
-                            Scene sceneAyuda = new Scene(root); // Creo la nueva escenea con la vista del FXML
-
-                            Stage stageNueva = new Stage(); // creo un nuevo stage y lo configuro
-                            stageNueva.setTitle("MP3_Player"); // le doy un titulo a la ventana
-                            stageNueva.setScene(sceneAyuda); // le paso la scene a cargar
-                            stageNueva.centerOnScreen(); // Centro la ventana en la ventana
-
-                            stageNueva.show(); // Muestro la ventana de usuario
-
-                        } catch (IOException ex) {
-                            System.err.println("Error al intentar cargar la ventana de ayuda: "
-                                    + ex.getMessage());
-                        }
+                        AbrirVentanasFXML.cerrarVentanaActual(btnEntrar);
+                        AbrirVentanasFXML.abrirVentana("/vistas/FXML_VentanaUsuario.fxml", "MP3_Player");
                     } else if (tipoUsuario.equals("administrador")) {
-                        try {
-                            // Obtengo el stage actual para cerrar la ventana en la cual se encuentra el botón
-                            Stage stageActual = (Stage) btnEntrar.getScene().getWindow();
-                            stageActual.close(); // Cierro la ventana de iniciar sesion
+                        AbrirVentanasFXML.cerrarVentanaActual(btnEntrar);
+                        AbrirVentanasFXML.abrirVentana("/vistas/FXML_VentanaAdministrador.fxml", "MP3_Player");
 
-                            Parent root = FXMLLoader.load(getClass().getResource("/vistas/FXML_VentanaAdministrador.fxml")); // Cargo el FXML
-
-                            Scene sceneAyuda = new Scene(root); // Creo la nueva escenea con la vista del FXML
-
-                            Stage stageNueva = new Stage(); // creo un nuevo stage y lo configuro
-                            stageNueva.setTitle("MP3_Player"); // le doy un titulo a la ventana
-                            stageNueva.setScene(sceneAyuda); // le paso la scene a cargar
-                            stageNueva.centerOnScreen(); // Centro la ventana en la ventana
-
-                            stageNueva.show(); // Muestro la ventana de administrador
-
-                        } catch (IOException ex) {
-                            System.err.println("Error al intentar cargar la ventana de ayuda: "
-                                    + ex.getMessage());
-                        }
                     } else {
                         System.out.println("Usuario o contraseña incorrectos.");
                     }
+
+                } else {
+                    System.out.println("No se ha encontrado ningun registro en la base de datos");
                 }
             }
 
         } catch (Exception ex) {
             ex.printStackTrace(); // imprime el error
         }
+    }
 
+    private boolean mostrando = false;
+
+    @FXML
+    private void pulsarBtnMostrar(ActionEvent event) {
+        if (!mostrando) {
+            String mostrar = pwfContraseña.getText();
+            labelContraseña.setText(mostrar);
+            btnMostrar.setText("ocultar");
+            labelContraseña.setVisible(true);
+            mostrando = true;
+        } else {
+            labelContraseña.setVisible(false);
+            btnMostrar.setText("mostrar");
+            mostrando = false;
+        }
     }
 
     /**
@@ -140,6 +111,7 @@ public class Controlador_IniciarSesion implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        labelContraseña.setVisible(false);
         usuarioDAO = new UsuarioDAO();        // Creamos el DAO para acceder a la base de datos si es necesario
     }
 

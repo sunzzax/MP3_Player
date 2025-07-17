@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import mp3player.main.utilidades.AbrirVentanasFXML;
 
 /**
  * FXML Controller class
@@ -28,27 +29,8 @@ public class Controlador_Ayuda implements Initializable {
 
     @FXML
     private void pulsarBtnVolverInicioSesion(ActionEvent event) {
-        try {
-            // Obtengo el stage actual para cerrar la ventana en la cual se encuentra el botón
-            Stage stageActual = (Stage) btnVolverInicioSesion.getScene().getWindow();
-            stageActual.close(); // Cierro la ventana de iniciar sesion
-
-            Parent root = FXMLLoader.load(getClass().getResource("/vistas/FXML_IniciarSesion.fxml")); // Cargo el FXML
-
-            Scene sceneAyuda = new Scene(root); // Creo la nueva escenea con la vista del FXML
-
-            Stage stageNueva = new Stage(); // creo un nuevo stage y lo configuro
-            stageNueva.setTitle("MP3_Player"); // le doy un titulo a la ventana
-            stageNueva.setScene(sceneAyuda); // le paso la scene a cargar
-            stageNueva.centerOnScreen(); // Centro la ventana en la ventana
-
-            stageNueva.show(); // Muestro la ventana de ayuda
-
-        } catch (IOException ex) {
-            System.err.println("Error al intentar cargar la ventana de iniciar sesión: "
-                    + ex.getMessage());
-        }
-
+        AbrirVentanasFXML.cerrarVentanaActual(btnVolverInicioSesion);
+        AbrirVentanasFXML.abrirVentana("/vistas/FXML_IniciarSesion.fxml", "MP3_Player");
     }
 
     /**
