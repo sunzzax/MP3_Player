@@ -20,12 +20,16 @@ public class Controlador_VentanaUsuario implements Initializable {
     @FXML
     private ComboBox<String> cmbFiltrar;
     
+    private Controlador_Buscador buscador;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cmbFiltrar.getItems().addAll("Phonk", "Clasica", "Electronica", "Pop");
+        buscador = new Controlador_Buscador();
+        buscador.setComboBox(cmbFiltrar);
+        buscador.añadirElementos();
     }
 
 }
