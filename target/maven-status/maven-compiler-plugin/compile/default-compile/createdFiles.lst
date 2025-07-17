@@ -1,9 +1,13 @@
+mp3player\controladores\Controlador_Controles.class
 mp3player\main\modelos\Modelo_Usuario.class
+mp3player\main\modelos\Modelo_Reproductor.class
 mp3player\main\utilidades\AbrirVentanasFXML.class
 mp3player\main\utilidades\ConexionBD.class
+mp3player\controladores\Controlador_Buscador.class
 mp3player\controladores\Controlador_Ayuda.class
 mp3player\controladores\Controlador_VentanaAdministrador.class
 mp3player\main\DAO\UsuarioDAO.class
 mp3player\main\App.class
+mp3player\controladores\Controlador_ListaCanciones.class
 mp3player\controladores\Controlador_IniciarSesion.class
 mp3player\controladores\Controlador_VentanaUsuario.class

@@ -40,7 +40,7 @@ public class Controlador_IniciarSesion implements Initializable {
 
     @FXML
     private Label labelContraseña;
-    
+
     private UsuarioDAO usuarioDAO;
 
     @FXML
@@ -60,7 +60,8 @@ public class Controlador_IniciarSesion implements Initializable {
             if (usuario.isEmpty() || contraseña.isEmpty()) {
                 System.out.println("Los campos no pueden estar vacios.");
             } else {
-                // por ahora dejarlo asi
+                // Por ahora solo obtenemos el tipo de usuario (usuario o administrador).
+                // En el futuro se puede cambiar para devolver un objeto ModeloUsuario si hace falta más información.
                 String tipoUsuario = usuarioDAO.validarCredenciales(usuario, contraseña);
 
                 // Compruebo si se encuentra en la base de datos

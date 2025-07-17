@@ -1,9 +1,13 @@
-C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\main\DAO\UsuarioDAO.java
+C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\controladores\Controlador_Buscador.java
+C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\controladores\Controlador_ListaCanciones.java
+C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\controladores\Controlador_Controles.java
 C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\main\modelos\Modelo_Usuario.java
-C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\main\utilidades\ConexionBD.java
 C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\controladores\Controlador_IniciarSesion.java
 C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\main\utilidades\AbrirVentanasFXML.java
 C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\controladores\Controlador_VentanaAdministrador.java
+C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\main\modelos\Modelo_Reproductor.java
+C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\main\DAO\UsuarioDAO.java
+C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\main\utilidades\ConexionBD.java
 C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\main\App.java
 C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\controladores\Controlador_Ayuda.java
 C:\Users\marti\Documents\NetBeansProjects\MP3_Player\src\main\java\mp3player\controladores\Controlador_VentanaUsuario.java
