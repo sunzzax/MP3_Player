@@ -6,7 +6,9 @@ package mp3player.controladores;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 
 /**
  * FXML Controller class
@@ -14,13 +16,16 @@ import javafx.fxml.Initializable;
  * @author kira
  */
 public class Controlador_VentanaUsuario implements Initializable {
-
+    
+    @FXML
+    private ComboBox<String> cmbFiltrar;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        cmbFiltrar.getItems().addAll("Phonk", "Clasica", "Electronica", "Pop");
+    }
+
 }

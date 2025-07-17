@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -39,7 +40,7 @@ public class Controlador_IniciarSesion implements Initializable {
 
     @FXML
     private Label labelContraseña;
-
+    
     private UsuarioDAO usuarioDAO;
 
     @FXML
@@ -96,12 +97,10 @@ public class Controlador_IniciarSesion implements Initializable {
         if (!mostrando) {
             String mostrar = pwfContraseña.getText();
             labelContraseña.setText(mostrar);
-            btnMostrar.setText("ocultar");
             labelContraseña.setVisible(true);
             mostrando = true;
         } else {
             labelContraseña.setVisible(false);
-            btnMostrar.setText("mostrar");
             mostrando = false;
         }
     }
