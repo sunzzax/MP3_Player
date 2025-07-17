@@ -20,3 +20,21 @@ public class App extends Application {
     }
 
 }
+
+
+/*
+1. Buscador + Filtro
+FXML: FXML_Buscador.fxml
+
+Controlador: Controlador_Buscador.java
+
+2. Lista de canciones
+FXML: FXML_ListaCanciones.fxml
+
+Controlador: Controlador_ListaCanciones.java
+
+3. Controles de reproducción
+FXML: FXML_Controles.fxml
+
+Controlador: Controlador_Controles.java
+*/
