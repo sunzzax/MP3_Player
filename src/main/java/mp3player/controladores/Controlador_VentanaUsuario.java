@@ -4,6 +4,7 @@
  */
 package mp3player.controladores;
 
+import mp3player.main.utilidades.VentanaUsuarioBuscadorUtil;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -20,14 +21,14 @@ public class Controlador_VentanaUsuario implements Initializable {
     @FXML
     private ComboBox<String> cmbFiltrar;
     
-    private Controlador_Buscador buscador;
+    private VentanaUsuarioBuscadorUtil buscador;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        buscador = new Controlador_Buscador();
+        buscador = new VentanaUsuarioBuscadorUtil();
         buscador.setComboBox(cmbFiltrar);
         buscador.añadirElementos();
     }

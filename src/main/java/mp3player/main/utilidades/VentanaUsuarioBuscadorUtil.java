@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package mp3player.controladores;
+package mp3player.main.utilidades;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.scene.control.ComboBox;
  *
  * @author kira
  */
-public class Controlador_Buscador implements Initializable {
+public class VentanaUsuarioBuscadorUtil implements Initializable {
 
     // Combobox que lo utilizaré para mostrar los géneros de musica
     private ComboBox<String> comboBoxFiltrar;
@@ -29,7 +29,7 @@ public class Controlador_Buscador implements Initializable {
     // habiamos recibido en setComboBox
     public void añadirElementos() {
         if(comboBoxFiltrar != null) {
-            comboBoxFiltrar.getItems().addAll("Todos, Phonk", "Clasica", "Electronica", "Pop");
+            comboBoxFiltrar.getItems().addAll("Todos", "Phonk", "Clasica", "Electronica", "Pop");
         }
     }
     /**
