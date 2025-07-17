@@ -17,6 +17,9 @@ import javafx.stage.Stage;
  */
 public class AbrirVentanasFXML {
 
+    
+    // Plantilla para abrir ventanas FXML
+    
     public static void abrirVentana(String rutaFXML, String tituloVentana) {
         try {
             Parent root = FXMLLoader.load(AbrirVentanasFXML.class.getResource(rutaFXML));
