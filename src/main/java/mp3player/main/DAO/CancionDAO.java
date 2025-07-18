@@ -19,58 +19,34 @@ import mp3player.main.utilidades.ConexionBD;
  */
 public class CancionDAO {
 
-    // Método para obtener todos las canciones
-    public List<Modelo_Cancion> obtenerCanciones() {
-
+    // Método para buscar canciones por nombre y género
+    public List<Modelo_Cancion> buscarCanciones(String nombre, String genero) {
         List<Modelo_Cancion> listaCanciones = new ArrayList<>();
-        String sql = "SELECT * FROM canciones";
+        String sql = "SELECT * FROM canciones WHERE titulo LIKE ? AND (? = 'Todos' OR genero = ?) ORDER BY titulo ASC";
 
         try (Connection con = ConexionBD.conectarBD(); PreparedStatement pstm = con.prepareStatement(sql)) {
             if (con != null) {
-                ResultSet resultado = pstm.executeQuery();
 
+                pstm.setString(1, nombre);
+                pstm.setString(2, genero);
+                pstm.setString(3, genero);
+
+                ResultSet resultado = pstm.executeQuery();
                 while (resultado.next()) {
-                    Modelo_Cancion cancion = new Modelo_Cancion(resultado.getInt("id"), resultado.getString("titulo"), resultado.getString("artista"), resultado.getString("genero"), resultado.getString("archivo"));
+                    Modelo_Cancion cancion = new Modelo_Cancion(
+                            resultado.getInt("id"),
+                            resultado.getString("titulo"),
+                            resultado.getString("artista"),
+                            resultado.getString("genero"),
+                            resultado.getString("archivo")
+                    );
                     listaCanciones.add(cancion);
                 }
-            } else {
-                System.err.println("No se ha podido realizar la consulta.");
             }
-
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-
         return listaCanciones;
-
-    }
-
-    // Método para obtener todas las canciones por género
-    public List<Modelo_Cancion> obtenerCancionesPorGenero(String genero) {
-
-        List<Modelo_Cancion> listaCanciones = new ArrayList<>();
-        String sql = "SELECT * FROM canciones WHERE genero =  ?";
-
-        try (Connection con = ConexionBD.conectarBD(); PreparedStatement pstm = con.prepareStatement(sql)) {
-            if (con != null) {
-                
-                pstm.setString(1, genero);
-                ResultSet resultado = pstm.executeQuery();
-
-                while (resultado.next()) {
-                    Modelo_Cancion cancion = new Modelo_Cancion(resultado.getInt("id"), resultado.getString("titulo"), resultado.getString("artista"), resultado.getString("genero"), resultado.getString("archivo"));
-                    listaCanciones.add(cancion);
-                }
-            } else {
-                System.err.println("No se ha podido realizar la consulta.");
-            }
-
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-
-        return listaCanciones;
-
     }
 
 }

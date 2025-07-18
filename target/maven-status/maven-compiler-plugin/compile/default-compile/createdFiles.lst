@@ -1,5 +1,4 @@
 mp3player\main\utilidades\VentanaUsuarioControlesUtil.class
-mp3player\main\utilidades\VentanaUsuarioListaCancionesUtils.class
 mp3player\main\modelos\Modelo_Usuario.class
 mp3player\main\utilidades\AbrirVentanasFXML.class
 mp3player\main\utilidades\ConexionBD.class

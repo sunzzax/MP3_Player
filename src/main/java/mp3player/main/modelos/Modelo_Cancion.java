@@ -66,4 +66,9 @@ public class Modelo_Cancion {
         this.archivo = archivo;
     }
 
+    @Override
+    public String toString() {
+        return titulo + " - " + artista;
+    }
+
 }
