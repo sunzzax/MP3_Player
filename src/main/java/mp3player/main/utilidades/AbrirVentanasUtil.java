@@ -15,14 +15,14 @@ import javafx.stage.Stage;
  *
  * @author kira
  */
-public class AbrirVentanasFXML {
+public class AbrirVentanasUtil {
 
     
     // Plantilla para abrir ventanas FXML
     
     public static void abrirVentana(String rutaFXML, String tituloVentana) {
         try {
-            Parent root = FXMLLoader.load(AbrirVentanasFXML.class.getResource(rutaFXML));
+            Parent root = FXMLLoader.load(AbrirVentanasUtil.class.getResource(rutaFXML));
             Scene escena = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle(tituloVentana);

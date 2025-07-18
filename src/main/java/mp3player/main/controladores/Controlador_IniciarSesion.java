@@ -16,7 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import mp3player.main.DAO.UsuarioDAO;
-import mp3player.main.utilidades.AbrirVentanasFXML;
+import mp3player.main.utilidades.AbrirVentanasUtil;
 
 /**
  * FXML Controller class
@@ -44,8 +44,8 @@ public class Controlador_IniciarSesion implements Initializable {
 
     @FXML
     private void pulsarBtnAyuda(ActionEvent event) {
-        AbrirVentanasFXML.cerrarVentanaActual(btnAyuda);
-        AbrirVentanasFXML.abrirVentana("/vistas/FXML_Ayuda.fxml", "MP3_Player");
+        AbrirVentanasUtil.cerrarVentanaActual(btnAyuda);
+        AbrirVentanasUtil.abrirVentana("/vistas/FXML_Ayuda.fxml", "MP3_Player");
     }
 
     @FXML
@@ -69,12 +69,12 @@ public class Controlador_IniciarSesion implements Initializable {
 
                     if (tipoUsuario.equals("usuario")) {
                         // Cierra la ventana actual usando el botón como referencia
-                        AbrirVentanasFXML.cerrarVentanaActual(btnEntrar);
+                        AbrirVentanasUtil.cerrarVentanaActual(btnEntrar);
                         // Abre la ventana del usuario cargando el archivo FXML correspondiente
-                        AbrirVentanasFXML.abrirVentana("/vistas/FXML_VentanaUsuario.fxml", "MP3_Player"); // Lo mismo pero esto es para abrir otro FXML
+                        AbrirVentanasUtil.abrirVentana("/vistas/FXML_VentanaUsuario.fxml", "MP3_Player"); // Lo mismo pero esto es para abrir otro FXML
                     } else if (tipoUsuario.equals("administrador")) {
-                        AbrirVentanasFXML.cerrarVentanaActual(btnEntrar);
-                        AbrirVentanasFXML.abrirVentana("/vistas/FXML_VentanaAdministrador.fxml", "MP3_Player");
+                        AbrirVentanasUtil.cerrarVentanaActual(btnEntrar);
+                        AbrirVentanasUtil.abrirVentana("/vistas/FXML_VentanaAdministrador.fxml", "MP3_Player");
 
                     } else {
                         System.out.println("Usuario o contraseña incorrectos.");

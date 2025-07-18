@@ -10,7 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import mp3player.main.utilidades.AbrirVentanasFXML;
+import mp3player.main.utilidades.AbrirVentanasUtil;
 
 /**
  * FXML Controller class
@@ -24,8 +24,8 @@ public class Controlador_Ayuda implements Initializable {
 
     @FXML
     private void pulsarBtnVolverInicioSesion(ActionEvent event) {
-        AbrirVentanasFXML.cerrarVentanaActual(btnVolverInicioSesion);
-        AbrirVentanasFXML.abrirVentana("/vistas/FXML_IniciarSesion.fxml", "MP3_Player");
+        AbrirVentanasUtil.cerrarVentanaActual(btnVolverInicioSesion);
+        AbrirVentanasUtil.abrirVentana("/vistas/FXML_IniciarSesion.fxml", "MP3_Player");
     }
 
     /**
