@@ -38,8 +38,35 @@ public class Controlador_VentanaUsuario implements Initializable {
         VentanaUsuarioBuscadorUtil.añadirElementos(cmbFiltrar);
 
         // Actualizar la lista cuando cambia el texto o el género
+        // Se activa cuando se escribe algo es un addListener y llama al 
+        // método actualizarLista()
+        // obs es el objeto que esta observando por ejemplo la propiedad del texto TextField
+        // oldVal es el valor anterior al cambio
+        // newVal es el nuevo valor después del cambio
+        /*
+        Imagina que tienes un TextField y el usuario escribe dentro de él:
+
+        Primero está vacío: ""
+
+        El usuario escribe una letra: ahora es "a"
+
+        Entonces:
+
+        oldVal será ""
+
+        newVal será "a"
+
+        Y si luego el usuario escribe "ab":
+
+        oldVal será "a"
+
+        newVal será "ab"
+         */
         txfBuscar.textProperty().addListener((obs, oldVal, newVal) -> actualizarLista());
-        cmbFiltrar.setOnAction(e -> actualizarLista());
+        // Esto se ejecuta cuando el usuario cambia la selección del Combobox y
+        // llama a actualizarLista()
+        
+        cmbFiltrar.setOnAction(event -> actualizarLista());
 
         actualizarLista(); // Mostrar todo al iniciar
 
