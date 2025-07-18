@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mp3player.controladores.Controlador_VentanaUsuario">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mp3player.main.controladores.Controlador_VentanaUsuario">
        <children>
         <TextField fx:id="txfBuscar" layoutX="336.0" layoutY="48.0" prefHeight="30.0" prefWidth="259.0" promptText="Buscador General">
             <font>

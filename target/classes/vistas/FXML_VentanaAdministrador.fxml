@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mp3player.controladores.Controlador_VentanaAdministrador">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mp3player.main.controladores.Controlador_VentanaAdministrador">
    <children>
       <Text layoutX="540.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VentanaAdministrador" />
    </children>

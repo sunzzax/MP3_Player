@@ -27,11 +27,11 @@ public class VentanaUsuarioBuscadorUtil {
     }
 
     public static List<Modelo_Cancion> buscarCanciones(TextField buscador, ComboBox<String> cbxGenero) {
-        String texto = "%" + buscador.getText().trim() + "%";
+        String titulo = "%" + buscador.getText().trim() + "%";
         String genero = cbxGenero.getValue();
 
         CancionDAO dao = new CancionDAO();
-        return dao.buscarCanciones(texto, genero);
+        return dao.buscarCanciones(titulo, genero);
     }
 
 }

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/24.0.1" fx:controller="mp3player.controladores.Controlador_Ayuda">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/24.0.1" fx:controller="mp3player.main.controladores.Controlador_Ayuda">
    <children>
       <TextArea editable="false" focusTraversable="false" layoutY="155.0" prefHeight="61.0" prefWidth="600.0" text="Para iniciar sesión debes introducir un usuario y una contraseña, después de eso deberás &#10;presionar el botón acceder.">
          <font>

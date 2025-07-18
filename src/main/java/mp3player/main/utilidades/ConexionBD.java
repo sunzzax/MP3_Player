@@ -18,7 +18,6 @@ public class ConexionBD {
         try {
             // Ruta relativa a la base de datos (raíz del proyecto)
             String rutaBase = "jdbc:sqlite:base.db";
-            System.out.println("Conectado a la base de datos.");
             return DriverManager.getConnection(rutaBase);
         } catch (SQLException e) {
             System.err.println("Error al conectar con la base de datos: " + e.getMessage());

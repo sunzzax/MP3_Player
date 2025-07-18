@@ -20,14 +20,14 @@ import mp3player.main.utilidades.ConexionBD;
 public class CancionDAO {
 
     // Método para buscar canciones por nombre y género
-    public List<Modelo_Cancion> buscarCanciones(String nombre, String genero) {
+    public List<Modelo_Cancion> buscarCanciones(String titulo, String genero) {
         List<Modelo_Cancion> listaCanciones = new ArrayList<>();
         String sql = "SELECT * FROM canciones WHERE titulo LIKE ? AND (? = 'Todos' OR genero = ?) ORDER BY titulo ASC";
 
         try (Connection con = ConexionBD.conectarBD(); PreparedStatement pstm = con.prepareStatement(sql)) {
             if (con != null) {
 
-                pstm.setString(1, nombre);
+                pstm.setString(1, titulo);
                 pstm.setString(2, genero);
                 pstm.setString(3, genero);
 
