@@ -20,7 +20,7 @@ public class VentanaUsuarioBuscadorUtil {
     //Este método estático añade los generos al combobox de la ventana de usuario que
     // habiamos recibido en setComboBox
     public static void añadirElementos(ComboBox<String> comboBoxFiltrar) {
-        if (comboBoxFiltrar != null) {
+        if (comboBoxFiltrar != null) { // si el combobox ha sido creado entonces
             comboBoxFiltrar.getItems().addAll("Todos", "Phonk", "Clasica", "Electronica", "Pop", "Jersey");
             comboBoxFiltrar.setValue("Todos");
         }
