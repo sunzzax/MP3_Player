@@ -41,7 +41,6 @@ public class Controlador_VentanaUsuario implements Initializable {
     private void añadirFavoritos(ActionEvent event) {
         Modelo_Cancion cancionSeleccionada = listViewCanciones.getSelectionModel().getSelectedItem();
         if (cancionSeleccionada != null && !listViewCancionesFavoritas.getItems().contains(cancionSeleccionada)) {
-             dao = new CancionDAO();
             int idUsuario = Modelo_Usuario.getUsuarioActual().getID();
             int idCancion = cancionSeleccionada.getID();
             dao.insertarFavoritos(idUsuario, idCancion);
