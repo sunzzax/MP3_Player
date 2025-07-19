@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import mp3player.main.DAO.CancionDAO;
 import mp3player.main.modelos.Modelo_Cancion;
+import mp3player.main.modelos.Modelo_Usuario;
 
 /**
  * FXML Controller class

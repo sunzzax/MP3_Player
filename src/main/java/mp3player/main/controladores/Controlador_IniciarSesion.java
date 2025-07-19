@@ -16,6 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import mp3player.main.DAO.UsuarioDAO;
+import mp3player.main.modelos.Modelo_Usuario;
 import mp3player.main.utilidades.AbrirVentanasUtil;
 
 /**
@@ -59,20 +60,20 @@ public class Controlador_IniciarSesion implements Initializable {
             if (usuario.isEmpty() || contraseña.isEmpty()) {
                 System.out.println("Los campos no pueden estar vacios.");
             } else {
-                // Por ahora solo obtenemos el tipo de usuario (usuario o administrador).
-                // En el futuro se puede cambiar para devolver un objeto ModeloUsuario si hace falta más información.
-                String tipoUsuario = usuarioDAO.validarCredenciales(usuario, contraseña);
+                Modelo_Usuario usuarioIniciado = usuarioDAO.validarCredenciales(usuario, contraseña);
 
                 // Compruebo si se encuentra en la base de datos
-                if (tipoUsuario != null) {
-                    System.out.println("Bienvenido. Acceso concedido como " + tipoUsuario);
+                if (usuarioIniciado != null) {
+                    System.out.println("Bienvenido. Acceso concedido como " + usuarioIniciado.getTipo());
 
-                    if (tipoUsuario.equals("usuario")) {
+                    Modelo_Usuario.setUsuarioActual(usuarioIniciado);
+                    
+                    if (usuarioIniciado.getTipo().equals("usuario")) {
                         // Cierra la ventana actual usando el botón como referencia
                         AbrirVentanasUtil.cerrarVentanaActual(btnEntrar);
                         // Abre la ventana del usuario cargando el archivo FXML correspondiente
                         AbrirVentanasUtil.abrirVentana("/vistas/FXML_VentanaUsuario.fxml", "MP3_Player"); // Lo mismo pero esto es para abrir otro FXML
-                    } else if (tipoUsuario.equals("administrador")) {
+                    } else if (usuarioIniciado.getTipo().equals("administrador")) {
                         AbrirVentanasUtil.cerrarVentanaActual(btnEntrar);
                         AbrirVentanasUtil.abrirVentana("/vistas/FXML_VentanaAdministrador.fxml", "MP3_Player");
 

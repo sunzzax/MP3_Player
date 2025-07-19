@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import mp3player.main.modelos.Modelo_Usuario;
 import mp3player.main.utilidades.ConexionBD;
 
 /**
@@ -18,29 +19,26 @@ public class UsuarioDAO {
 
     public UsuarioDAO() {
     }
-                                                        // por ahora dejarlo asi
-    public String validarCredenciales(String usuario, String contraseña) {
 
-        String tipo = null;
+    // En vez de devolver String (el tipo de usuario), devuelve Modelo_Usuario completo
+    public Modelo_Usuario validarCredenciales(String usuario, String contraseña) {
+        // Aquí haces la consulta a la base de datos
         String sql = "SELECT * FROM usuario WHERE usuario = ? AND contraseña = ?";
-
-        try (Connection con = ConexionBD.conectarBD(); PreparedStatement pstm = con.prepareStatement(sql)) {
-
-            pstm.setString(1, usuario); // añade a sql en la posicion 1 a usuario
-            pstm.setString(2, contraseña); // añade en la posicion2 a contraseña
-
-            ResultSet resultado = pstm.executeQuery(); // ejecuta la consulta
-
-            if (resultado.next()) {
-                tipo = resultado.getString("tipo"); // almacena el valor de tipo
+        try (Connection conn = ConexionBD.conectarBD(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, usuario);
+            pstmt.setString(2, contraseña);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("ID");
+                usuario = rs.getString("usuario");
+                contraseña = rs.getString("contraseña");
+                String tipo = rs.getString("tipo");
+                return new Modelo_Usuario(id, usuario, contraseña, tipo);
             }
-
-        } catch (SQLException ex) {
-            System.err.println("Error al intentar validar las credenciales.");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        return tipo; // devuelve o usuario/administrador/null
-
+        return null;
     }
 
 }

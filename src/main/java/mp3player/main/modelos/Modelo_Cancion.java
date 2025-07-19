@@ -68,7 +68,7 @@ public class Modelo_Cancion {
 
     @Override
     public String toString() {
-        return titulo + " - " + artista;
+        return titulo + " - " + artista + " (" + genero +")";
     }
 
 }

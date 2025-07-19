@@ -8,12 +8,16 @@ import mp3player.main.utilidades.VentanaUsuarioBuscadorUtil;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import mp3player.main.DAO.CancionDAO;
 import mp3player.main.modelos.Modelo_Cancion;
+import mp3player.main.modelos.Modelo_Usuario;
+import mp3player.main.utilidades.VentanaUsuarioBuscadorFavoritosUtil;
 
 /**
  * FXML Controller class
@@ -25,60 +29,63 @@ public class Controlador_VentanaUsuario implements Initializable {
     @FXML
     private ComboBox<String> cmbFiltrar;
     @FXML
-    private TextField txfBuscar;
+    private TextField txfBuscar, txfFavoritos;
 
+    private CancionDAO dao;
+    
     @FXML
-    private ListView<Modelo_Cancion> listViewCanciones;
+    private ListView<Modelo_Cancion> listViewCanciones, listViewCancionesFavoritas;
+
+    //Método que controla el botón de añadir canciones a la lista de favoritos
+    @FXML
+    private void añadirFavoritos(ActionEvent event) {
+        Modelo_Cancion cancionSeleccionada = listViewCanciones.getSelectionModel().getSelectedItem();
+        if (cancionSeleccionada != null && !listViewCancionesFavoritas.getItems().contains(cancionSeleccionada)) {
+             dao = new CancionDAO();
+            int idUsuario = Modelo_Usuario.getUsuarioActual().getID();
+            int idCancion = cancionSeleccionada.getID();
+            dao.insertarFavoritos(idUsuario, idCancion);
+            // En vez de añadir directamente, recargo la lista desde la BD para evitar duplicados
+            List<Modelo_Cancion> cancionesFavoritas = VentanaUsuarioBuscadorFavoritosUtil.buscarCancionesFavoritas(txfFavoritos);
+            listViewCancionesFavoritas.getItems().setAll(cancionesFavoritas);
+        } else if(cancionSeleccionada == null) {
+            System.out.println("Selecciona una canción para añadir a favoritos");
+        }
+        
+    }
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        dao = new CancionDAO();
         VentanaUsuarioBuscadorUtil.añadirElementos(cmbFiltrar);
 
-        // Actualizar la lista cuando cambia el texto o el género
-        // Se activa cuando se escribe algo es un addListener y llama al 
-        // método actualizarLista()
-        // obs es el objeto que esta observando por ejemplo la propiedad del texto TextField
-        // oldVal es el valor anterior al cambio
-        // newVal es el nuevo valor después del cambio
-        /*
-        Imagina que tienes un TextField y el usuario escribe dentro de él:
+        // Actualiza las listas cuando cambia el texto del buscador principal o favoritos
+        txfBuscar.textProperty().addListener((obs, antiguoValor, nuevoValor) -> actualizarListas());
+        txfFavoritos.textProperty().addListener((obs, antiguoValor, nuevoValor) -> actualizarListas());
+        // Actualiza la lista cuando se cambia la opción del ComboBox
+        cmbFiltrar.setOnAction(event -> actualizarListas());
 
-        Primero está vacío: ""
-
-        El usuario escribe una letra: ahora es "a"
-
-        Entonces:
-
-        oldVal será ""
-
-        newVal será "a"
-
-        Y si luego el usuario escribe "ab":
-
-        oldVal será "a"
-
-        newVal será "ab"
-         */
-        txfBuscar.textProperty().addListener((obs, oldVal, newVal) -> actualizarLista());
-        // Esto se ejecuta cuando el usuario cambia la selección del Combobox y
-        // llama a actualizarLista()
-        
-        cmbFiltrar.setOnAction(event -> actualizarLista());
-
-        actualizarLista(); // Mostrar todo al iniciar
+        // Carga inicial de las listas
+        actualizarListas();
 
     }
 
-    private void actualizarLista() {
+    private void actualizarListas() {
+        // Actualiza la lista de busqueda
         List<Modelo_Cancion> canciones = VentanaUsuarioBuscadorUtil.buscarCanciones(txfBuscar, cmbFiltrar);
         // JavaFX invoca internamente el método toString() de cada objeto para obtener la representación 
         // en texto que se verá en la lista.
         // Eso hace que cada objeto Modelo_Cancion se muestre así en el ListView:
         // Whatsup - DJ Pepe (Pop)
+        
+        // Actualiza la lista de busqueda favoritos
+        List<Modelo_Cancion> cancionesFavoritas = VentanaUsuarioBuscadorFavoritosUtil.buscarCancionesFavoritas(txfFavoritos);
+
         listViewCanciones.getItems().setAll(canciones);
+        listViewCancionesFavoritas.getItems().setAll(cancionesFavoritas);
     }
 
 }

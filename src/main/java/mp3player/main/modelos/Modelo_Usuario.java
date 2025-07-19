@@ -12,6 +12,7 @@ public class Modelo_Usuario {
 
     private int ID;
     private String usuario, contraseña, tipo;
+    private static Modelo_Usuario usuarioActual;
 
     // Constructor sin parámetros OBLIGATORIO
     /*JavaFX lo necesita para crear el controlador 
@@ -27,7 +28,6 @@ public class Modelo_Usuario {
         this.tipo = tipo;
     }
 
-    
     // Getters y Setters
     public int getID() {
         return ID;
@@ -61,4 +61,12 @@ public class Modelo_Usuario {
         this.tipo = tipo;
     }
 
+    public static Modelo_Usuario getUsuarioActual() {
+        return usuarioActual;
+    }
+
+    public static void setUsuarioActual (Modelo_Usuario usuario) {
+        usuarioActual = usuario;
+    }
+    
 }

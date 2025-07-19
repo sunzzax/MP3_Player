@@ -36,9 +36,9 @@
                 </Button>
             </children>
         </Pane>
-      <ListView layoutX="21.0" layoutY="90.0" prefHeight="511.0" prefWidth="266.0" />
-      <Button layoutX="752.0" layoutY="48.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" text="Añadir a Favoritos" />
-      <TextField layoutX="21.0" layoutY="48.0" prefHeight="30.0" prefWidth="266.0" promptText="Buscador Favoritos">
+      <ListView fx:id="listViewCancionesFavoritas" layoutX="21.0" layoutY="90.0" prefHeight="511.0" prefWidth="266.0" />
+      <Button fx:id="btnAñadirFavoritos" layoutX="752.0" layoutY="48.0" mnemonicParsing="false" onAction="#añadirFavoritos" prefHeight="30.0" prefWidth="112.0" text="Añadir a Favoritos" />
+      <TextField fx:id="txfFavoritos" layoutX="21.0" layoutY="48.0" prefHeight="30.0" prefWidth="266.0" promptText="Buscador Favoritos">
          <font>
             <Font size="14.0" />
          </font>
