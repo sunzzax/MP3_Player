@@ -17,9 +17,6 @@ import mp3player.main.utilidades.ConexionBD;
  */
 public class UsuarioDAO {
 
-    public UsuarioDAO() {
-    }
-
     // En vez de devolver String (el tipo de usuario), devuelve Modelo_Usuario completo
     public Modelo_Usuario validarCredenciales(String usuario, String contraseña) {
         // Aquí haces la consulta a la base de datos

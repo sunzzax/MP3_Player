@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author kira
  */
-public class VentanaUsuarioControlesUtil implements Initializable {
+public class ControlesUtil implements Initializable {
 
     /**
      * Initializes the controller class.

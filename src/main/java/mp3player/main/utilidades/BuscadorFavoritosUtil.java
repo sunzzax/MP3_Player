@@ -14,7 +14,7 @@ import mp3player.main.modelos.Modelo_Cancion;
  *
  * @author kira
  */
-public class VentanaUsuarioBuscadorFavoritosUtil {
+public class BuscadorFavoritosUtil {
 
     
     public static List<Modelo_Cancion> buscarCancionesFavoritas(TextField buscadorFavoritos) {

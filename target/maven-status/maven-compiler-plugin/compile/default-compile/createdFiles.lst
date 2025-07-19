@@ -1,14 +1,14 @@
 mp3player\main\controladores\Controlador_Ayuda.class
+mp3player\main\utilidades\ControlesUtil.class
 mp3player\main\controladores\Controlador_VentanaAdministrador.class
-mp3player\main\utilidades\VentanaUsuarioControlesUtil.class
 mp3player\main\modelos\Modelo_Usuario.class
 mp3player\main\utilidades\AbrirVentanasUtil.class
 mp3player\main\utilidades\ConexionBD.class
-mp3player\main\utilidades\VentanaUsuarioBuscadorFavoritosUtil.class
+mp3player\main\utilidades\BuscadorFavoritosUtil.class
 mp3player\main\controladores\Controlador_VentanaUsuario.class
 mp3player\main\controladores\Controlador_IniciarSesion.class
 mp3player\main\DAO\UsuarioDAO.class
 mp3player\main\App.class
 mp3player\main\DAO\CancionDAO.class
 mp3player\main\modelos\Modelo_Cancion.class
-mp3player\main\utilidades\VentanaUsuarioBuscadorUtil.class
+mp3player\main\utilidades\BuscadorCancionesUtil.class

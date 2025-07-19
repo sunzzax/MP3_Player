@@ -16,7 +16,7 @@ import mp3player.main.modelos.Modelo_Usuario;
  *
  * @author kira
  */
-public class VentanaUsuarioBuscadorUtil {
+public class BuscadorCancionesUtil {
 
     //Este método estático añade los generos al combobox de la ventana de usuario que
     // habiamos recibido en setComboBox
